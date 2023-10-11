@@ -3,16 +3,23 @@ import CampoTexto from '../CampoTexto/CampoTexto'
 import './Formulario.css'
 import ListaSuspensa from '../ListaSuspensa/ListaSuspensa'
 import Botao from '../Botao/Botao'
+import { IColaborador } from '../../compartilhado/interfaces/IColaborador'
+
+interface FormularioProps {
+  aoColaboradorCadastrado: (colaborador: IColaborador) => void
+  times: string[]
+  
+}
 
 
-const Formulario = (props) => {
+const Formulario = (props: FormularioProps) => {
 
   const [nome, setNome] = useState("")
   const [cargo, setCargo] = useState("")
   const [imagem, setImagem] = useState("")
   const [time, setTime] = useState("")
 
-  const aoSalvar = (e) => {
+  const aoSalvar = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     props.aoColaboradorCadastrado({
       nome,
@@ -26,7 +33,7 @@ const Formulario = (props) => {
     setTime('')
 
   }
-
+  
   return (
     <section className='formulario'>
         <form onSubmit={aoSalvar}>
